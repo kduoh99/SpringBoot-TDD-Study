@@ -5,13 +5,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;
 import java.util.List;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DemoUtilsTest {
 
 	DemoUtils demoUtils;
@@ -23,6 +27,7 @@ class DemoUtilsTest {
 
 	@Test
 	@DisplayName("Equals and Not Equals")
+	@Order(1)
 	void testEqualsAndNotEquals() {
 
 		assertEquals(6, demoUtils.add(2, 4), "2+4 must be 6");
@@ -31,6 +36,7 @@ class DemoUtilsTest {
 
 	@Test
 	@DisplayName("Null and Not Null")
+	@Order(0)
 	void testNullAndNotNull() {
 		String str1 = null;
 		String str2 = "duoh";
@@ -50,6 +56,7 @@ class DemoUtilsTest {
 
 	@Test
 	@DisplayName("True and False")
+	@Order(30)
 	void testTrueFalse() {
 		int gradeOne = 10;
 		int gradeTwo = 5;
@@ -76,6 +83,7 @@ class DemoUtilsTest {
 
 	@Test
 	@DisplayName("Lines Match")
+	@Order(50)
 	void testLinesMatch() {
 		List<String> theList = List.of("luv", "2", "code");
 
