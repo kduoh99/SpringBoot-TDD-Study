@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Duration;
 import java.util.List;
 
 class DemoUtilsTest {
@@ -79,6 +80,21 @@ class DemoUtilsTest {
 		List<String> theList = List.of("luv", "2", "code");
 
 		assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
+	}
+
+	@Test
+	@DisplayName("Throws and Does Not Throw")
+	void testThrowsAndDoesNotThrow() {
+
+		assertThrows(Exception.class, () -> { demoUtils.throwException(-1); }, "Should throw exception");
+		assertDoesNotThrow(() -> { demoUtils.throwException(5); }, "Should not throw exception");
+	}
+
+	@Test
+	@DisplayName("Timeout")
+	void testTimeout() {
+
+		assertTimeoutPreemptively(Duration.ofSeconds(3), () -> { demoUtils.checkTimeout(); }, "Method should execute in 3 seconds");
 	}
 
 	// @AfterEach
