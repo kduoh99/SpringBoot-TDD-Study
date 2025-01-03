@@ -1,8 +1,5 @@
-package com.study.springboot_tdd;
+package com.study.junitdemo;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -23,6 +20,13 @@ class DemoUtilsTest {
 	@BeforeEach
 	void setupBeforeEach() {
 		demoUtils = new DemoUtils();
+	}
+
+	@Test
+	@DisplayName("Multiply")
+	void testMultiply() {
+
+		assertEquals(12, demoUtils.multiply(4, 3), "4*3 must be 12");
 	}
 
 	@Test

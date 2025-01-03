@@ -1,4 +1,4 @@
-package com.study.springboot_tdd;
+package com.study.junitdemo;
 
 import java.util.List;
 

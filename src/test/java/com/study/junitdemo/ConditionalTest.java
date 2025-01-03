@@ -1,4 +1,4 @@
-package com.study.springboot_tdd;
+package com.study.junitdemo;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
