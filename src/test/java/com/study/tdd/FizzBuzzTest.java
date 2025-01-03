@@ -14,8 +14,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 class FizzBuzzTest {
 
 	// If number is divisible by 3, print Fizz
-	@Test
 	@DisplayName("Divisible by Three")
+	@Test
 	@Order(1)
 	void testForDivisibleByThree() {
 
@@ -25,8 +25,8 @@ class FizzBuzzTest {
 	}
 
 	// If number is divisible by 5, print Buzz
-	@Test
 	@DisplayName("Divisible by Five")
+	@Test
 	@Order(2)
 	void testForDivisibleByFive() {
 
@@ -36,8 +36,8 @@ class FizzBuzzTest {
 	}
 
 	// If number is divisible by 3 and 5, print FizzBuzz
-	@Test
 	@DisplayName("Divisible by Three and Five")
+	@Test
 	@Order(3)
 	void testForDivisibleByThreeAndFive() {
 
@@ -47,8 +47,8 @@ class FizzBuzzTest {
 	}
 
 	// If number is NOT divisible by 3 or 5, then print the number
-	@Test
 	@DisplayName("Not Divisible by Three or Five")
+	@Test
 	@Order(4)
 	void testForNotDivisibleByThreeOrFive() {
 
@@ -57,8 +57,8 @@ class FizzBuzzTest {
 		assertEquals(expected, FizzBuzz.compute(1), "Should return 1");
 	}
 
-	@ParameterizedTest(name = "value={0}, expected={1}")
 	@DisplayName("Testing with Small data file")
+	@ParameterizedTest(name = "value={0}, expected={1}")
 	@CsvFileSource(resources = "/small-test-data.csv")
 	@Order(5)
 	void testSmallDataFile(int value, String expected) {
@@ -66,8 +66,8 @@ class FizzBuzzTest {
 		assertEquals(expected, FizzBuzz.compute(value));
 	}
 
-	@ParameterizedTest(name = "value={0}, expected={1}")
 	@DisplayName("Testing with Medium data file")
+	@ParameterizedTest(name = "value={0}, expected={1}")
 	@CsvFileSource(resources = "/medium-test-data.csv")
 	@Order(6)
 	void testMediumDataFile(int value, String expected) {
@@ -75,8 +75,8 @@ class FizzBuzzTest {
 		assertEquals(expected, FizzBuzz.compute(value));
 	}
 
-	@ParameterizedTest(name = "value={0}, expected={1}")
 	@DisplayName("Testing with Large data file")
+	@ParameterizedTest(name = "value={0}, expected={1}")
 	@CsvFileSource(resources = "/large-test-data.csv")
 	@Order(7)
 	void testLargeDataFile(int value, String expected) {

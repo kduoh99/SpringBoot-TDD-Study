@@ -22,15 +22,15 @@ class DemoUtilsTest {
 		demoUtils = new DemoUtils();
 	}
 
-	@Test
 	@DisplayName("Multiply")
+	@Test
 	void testMultiply() {
 
 		assertEquals(12, demoUtils.multiply(4, 3), "4*3 must be 12");
 	}
 
-	@Test
 	@DisplayName("Equals and Not Equals")
+	@Test
 	@Order(1)
 	void testEqualsAndNotEquals() {
 
@@ -38,8 +38,8 @@ class DemoUtilsTest {
 		assertNotEquals(8, demoUtils.add(1, 9), "1+9 must not be 8");
 	}
 
-	@Test
 	@DisplayName("Null and Not Null")
+	@Test
 	@Order(0)
 	void testNullAndNotNull() {
 		String str1 = null;
@@ -49,8 +49,8 @@ class DemoUtilsTest {
 		assertNotNull(demoUtils.checkNull(str2), "Object should not be null");
 	}
 
-	@Test
 	@DisplayName("Same and Not Same")
+	@Test
 	void testSameAndNotSame() {
 		String str = "duoh";
 
@@ -58,8 +58,8 @@ class DemoUtilsTest {
 		assertNotSame(str, demoUtils.getAcademy(), "Objects should not refer same object");
 	}
 
-	@Test
 	@DisplayName("True and False")
+	@Test
 	@Order(30)
 	void testTrueFalse() {
 		int gradeOne = 10;
@@ -69,24 +69,24 @@ class DemoUtilsTest {
 		assertFalse(demoUtils.isGreater(gradeTwo, gradeOne), "This should return false");
 	}
 
-	@Test
 	@DisplayName("Array Equals")
+	@Test
 	void testArrayEquals() {
 		String[] stringArray = {"A", "B", "C"};
 
 		assertArrayEquals(stringArray, demoUtils.getFirstThreeLettersOfAlphabet(), "Arrays should be the same");
 	}
 
-	@Test
 	@DisplayName("Iterable Equals")
+	@Test
 	void testIterableEquals() {
 		List<String> theList = List.of("luv", "2", "code");
 
 		assertIterableEquals(theList, demoUtils.getAcademyInList(), "Expected list should be same as actual list");
 	}
 
-	@Test
 	@DisplayName("Lines Match")
+	@Test
 	@Order(50)
 	void testLinesMatch() {
 		List<String> theList = List.of("luv", "2", "code");
@@ -94,16 +94,16 @@ class DemoUtilsTest {
 		assertLinesMatch(theList, demoUtils.getAcademyInList(), "Lines should match");
 	}
 
-	@Test
 	@DisplayName("Throws and Does Not Throw")
+	@Test
 	void testThrowsAndDoesNotThrow() {
 
 		assertThrows(Exception.class, () -> { demoUtils.throwException(-1); }, "Should throw exception");
 		assertDoesNotThrow(() -> { demoUtils.throwException(5); }, "Should not throw exception");
 	}
 
-	@Test
 	@DisplayName("Timeout")
+	@Test
 	void testTimeout() {
 
 		assertTimeoutPreemptively(Duration.ofSeconds(3), () -> { demoUtils.checkTimeout(); }, "Method should execute in 3 seconds");
