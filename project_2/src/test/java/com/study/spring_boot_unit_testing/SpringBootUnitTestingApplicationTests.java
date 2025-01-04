@@ -1,9 +1,12 @@
 package com.study.spring_boot_unit_testing;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,8 +50,19 @@ class SpringBootUnitTestingApplicationTests {
 		student.setStudentGrades(studentGrades);
 	}
 
+	@DisplayName("Add grade results for student grades")
 	@Test
-	void contextLoads() {
+	public void addGradeResultsForStudentGrades() {
+		assertEquals(353.25, studentGrades.addGradeResultsForSingleClass(
+			student.getStudentGrades().getMathGradeResults()
+		));
 	}
 
+	@DisplayName("Add grade results for student grades not equals")
+	@Test
+	public void addGradeResultsForStudentGradesAssertNotEquals() {
+		assertNotEquals(0, studentGrades.addGradeResultsForSingleClass(
+			student.getStudentGrades().getMathGradeResults()
+		));
+	}
 }
