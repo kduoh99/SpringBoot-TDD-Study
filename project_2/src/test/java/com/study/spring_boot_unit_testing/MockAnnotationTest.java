@@ -6,11 +6,10 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import com.study.spring_boot_unit_testing.dao.ApplicationDao;
 import com.study.spring_boot_unit_testing.models.CollegeStudent;
@@ -29,10 +28,12 @@ public class MockAnnotationTest {
 	@Autowired
 	StudentGrades studentGrades;
 
-	@Mock
+	// @Mock
+	@MockitoBean  // Spring Boot 3.4.0 버전부터 MockBean이 deprecated됨
 	private ApplicationDao applicationDao;
 
-	@InjectMocks
+	// @InjectMocks
+	@Autowired
 	private ApplicationService applicationService;
 
 	@BeforeEach
@@ -54,5 +55,23 @@ public class MockAnnotationTest {
 		verify(applicationDao).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
 
 		verify(applicationDao, times(1)).addGradeResultsForSingleClass(studentGrades.getMathGradeResults());
+	}
+
+	@DisplayName("Find Gpa")
+	@Test
+	public void assertEqualsTestFindGpa() {
+		when(applicationDao.findGradePointAverage(studentGrades.getMathGradeResults()))
+			.thenReturn(88.31);
+
+		assertEquals(88.31,
+			applicationService.findGradePointAverage(studentOne.getStudentGrades().getMathGradeResults()));
+	}
+
+	@DisplayName("Not Null")
+	@Test
+	public void testAssertNotNull() {
+		when(applicationDao.checkNull(studentGrades.getMathGradeResults())).thenReturn(true);
+
+		assertNotNull(applicationService.checkNull(studentOne.getStudentGrades().getMathGradeResults()), "Object should not be null");
 	}
 }
