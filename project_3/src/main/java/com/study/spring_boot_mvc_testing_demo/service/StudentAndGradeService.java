@@ -10,13 +10,12 @@ import com.study.spring_boot_mvc_testing_demo.models.CollegeStudent;
 import com.study.spring_boot_mvc_testing_demo.repository.StudentDao;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class StudentAndGradeService {
 
 	@Autowired
 	private StudentDao studentDao;
 
-	@Transactional
 	public void createStudent(String firstName, String lastName, String emailAddress) {
 		CollegeStudent student = new CollegeStudent(firstName, lastName, emailAddress);
 		student.setId(0);
@@ -31,7 +30,6 @@ public class StudentAndGradeService {
 		return false;
 	}
 
-	@Transactional
 	public void deleteStudent(int id) {
 		if (checkIfStudentIsNull(id)) {
 			studentDao.deleteById(id);
