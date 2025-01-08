@@ -1,6 +1,7 @@
 package com.study.spring_testing_annotation;
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -127,6 +128,23 @@ public class GradebookControllerTest {
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(APPLICATION_JSON_UTF8))
 			.andExpect(jsonPath("$", hasSize(2)));
+	}
+
+	@Test
+	public void createStudentHttpRequest() throws Exception {
+
+		student.setFirstname("Chad");
+		student.setLastname("Darby");
+		student.setEmailAddress("chad_darby@luv2code_school.com");
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/")
+				.contentType(APPLICATION_JSON_UTF8)
+				.content(objectMapper.writeValueAsString(student)))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$", hasSize(2)));
+
+		CollegeStudent verifyStudent = studentDao.findByEmailAddress("chad_darby@luv2code_school.com");
+		assertNotNull(verifyStudent, "Student should be valid");
 	}
 
 	@AfterEach
