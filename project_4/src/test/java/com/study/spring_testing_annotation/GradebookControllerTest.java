@@ -1,5 +1,8 @@
 package com.study.spring_testing_annotation;
 
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -108,6 +112,21 @@ public class GradebookControllerTest {
 		jdbc.execute(sqlAddMathGrade);
 		jdbc.execute(sqlAddScienceGrade);
 		jdbc.execute(sqlAddHistoryGrade);
+	}
+
+	@Test
+	public void getStudentsHttpRequest() throws Exception {
+
+		student.setFirstname("Chad");
+		student.setLastname("Darby");
+		student.setEmailAddress("chad.darby@luv2code_school.com");
+		em.persist(student);
+		em.flush();
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/"))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(APPLICATION_JSON_UTF8))
+			.andExpect(jsonPath("$", hasSize(2)));
 	}
 
 	@AfterEach
