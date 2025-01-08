@@ -11,8 +11,7 @@ import jakarta.persistence.Table;
 @Table(name = "student")
 public class CollegeStudent implements Student {
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
-	// 테스트에서 ID를 수동으로 설정함
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // 테스트에서 ID를 수동으로 설정 (주석 처리 후, 테스트 진행)
 	private int id;
 	@Column
 	private String firstname;

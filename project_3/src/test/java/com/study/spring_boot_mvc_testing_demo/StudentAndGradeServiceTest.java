@@ -28,7 +28,7 @@ import com.study.spring_boot_mvc_testing_demo.repository.ScienceGradeDao;
 import com.study.spring_boot_mvc_testing_demo.repository.StudentDao;
 import com.study.spring_boot_mvc_testing_demo.service.StudentAndGradeService;
 
-@TestPropertySource("/application.yml")
+@TestPropertySource("/application-test.yml")
 @SpringBootTest
 public class StudentAndGradeServiceTest {
 

@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name = "science_grade")
 public class ScienceGrade implements Grade {
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "student_id")
 	private int studentId;
