@@ -158,6 +158,17 @@ public class GradebookControllerTest {
 			.andExpect(jsonPath("$", hasSize(0)));
 	}
 
+	@Test
+	public void deleteStudentHttpRequestErrorPage() throws Exception {
+
+		assertFalse(studentDao.findById(0).isPresent());
+
+		mockMvc.perform(MockMvcRequestBuilders.delete("/student/{id}", 0))
+			.andExpect(status().is4xxClientError())
+			.andExpect(jsonPath("$.status", is(404)))
+			.andExpect(jsonPath("$.message", is("Student or Grade was not found")));
+	}
+
 	@AfterEach
 	public void setupAfterTransaction() {
 		jdbc.execute(sqlDeleteStudent);
