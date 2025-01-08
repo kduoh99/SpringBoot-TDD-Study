@@ -147,6 +147,17 @@ public class GradebookControllerTest {
 		assertNotNull(verifyStudent, "Student should be valid");
 	}
 
+	@Test
+	public void deleteStudentHttpRequest() throws Exception {
+
+		assertTrue(studentDao.findById(1).isPresent());
+
+		mockMvc.perform(MockMvcRequestBuilders.delete("/student/{id}", 1))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType(APPLICATION_JSON_UTF8))
+			.andExpect(jsonPath("$", hasSize(0)));
+	}
+
 	@AfterEach
 	public void setupAfterTransaction() {
 		jdbc.execute(sqlDeleteStudent);
